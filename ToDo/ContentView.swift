@@ -8,19 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    var todos = [
+        Todo(title: "Feed the cat"),
+        Todo(title: "Play with cat"),
+        Todo(title: "Get allergies"),
+        Todo(title: "Run away from cat"),
+        Todo(title: "Get a new cat")
+    ]
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            NavigationStack{
+                List{
+                    ForEach(todos, id:\.id) { todo in
+                        Text("\(todo.title)")
+                    }
+                }
+                .navigationTitle("Todos")
+            }
+            .padding()
         }
-        .padding()
     }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
     }
 }
